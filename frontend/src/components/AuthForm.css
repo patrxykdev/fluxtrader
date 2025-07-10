@@ -1,0 +1,90 @@
+/* frontend/src/components/AuthForm.css */
+
+.auth-card {
+  /* New background for the frosted glass effect */
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px); /* This blurs the wave animation behind the card */
+  -webkit-backdrop-filter: blur(8px); /* For Safari support */
+  
+  padding: 30px 40px;
+  border-radius: 16px; /* Slightly more rounded */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* A softer shadow */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* A subtle white border */
+  width: 100%;
+}
+
+.auth-card h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: var(--text-dark);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+.form-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--primary-blue);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+.form-button:hover {
+  background-color: #0B5ED7; /* A slightly darker blue */
+}
+
+.toggle-text {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--text-light-gray);
+}
+
+.toggle-text span {
+  color: var(--primary-blue);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.form-error-message {
+  color: #DC3545; /* A standard error red */
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}

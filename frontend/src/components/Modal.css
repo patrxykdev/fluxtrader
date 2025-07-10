@@ -1,0 +1,42 @@
+/* frontend/src/components/Modal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 25, 47, 0.7); /* A dark, slightly blue overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  position: relative;
+  background: var(--white);
+  padding: 0; /* Let the form inside handle padding */
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  width: 32px;
+  height: 32px;
+  color: var(--text-light-gray);
+  transition: color 0.2s ease;
+}
+
+.modal-close-button:hover {
+  color: var(--text-dark);
+}

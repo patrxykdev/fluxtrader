@@ -1,0 +1,205 @@
+/* frontend/src/components/HomePage.css */
+
+.homepage-container {
+  width: 100%;
+}
+
+/* --- REPLACE WITH THIS NEW CODE BLOCK --- */
+
+/* 1. Header Styling - Final Centered Version */
+.page-header {
+  position: relative; /* This is the anchor for the absolute-positioned button */
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center;    /* Centers them horizontally */
+  padding: 80px 20px;
+  background-color: var(--white);
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin: 0;
+}
+
+.hero-motto {
+  font-size: 1.25rem;
+  color: var(--text-light-gray);
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.motto-line {
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-blue);
+  border-radius: 2px;
+}
+
+/* This rule pins the login button to the corner of the .page-header */
+.login-button {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.login-button:hover {
+  background-color: var(--background);
+  border-color: var(--primary-blue);
+}
+
+
+
+
+/* 2. Feature Cards Styling */
+.features-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  background-color: var(--white);
+}
+.feature-card { display: flex; align-items: center; gap: 40px; margin-bottom: 80px; }
+.feature-card:nth-child(even) { flex-direction: row-reverse; }
+.feature-icon-container { flex-shrink: 0; width: 200px; height: 200px; background-color: var(--background); border-radius: 24px; display: flex; align-items: center; justify-content: center; }
+.feature-icon-container svg { width: 80px; height: 80px; color: var(--primary-blue); }
+.feature-text { flex-grow: 1; }
+.feature-text h3 { font-size: 1.8rem; font-weight: 600; color: var(--text-dark); margin-top: 0; margin-bottom: 1rem; }
+.feature-text p { font-size: 1.1rem; line-height: 1.7; color: var(--text-light-gray); }
+
+/* 3. Wave Transition Section */
+.wave-transition-section {
+  position: relative;
+  height: 300px;
+  background-color: var(--white); /* White background behind the wave */
+  overflow: hidden;
+}
+
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+}
+.waves { width: 100%; height: 100%; }
+
+/* 4. Form Area Section */
+.pricing-section {
+  background-color: #106cfc;
+  padding: 100px 20px;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+.pricing-header h2 { font-size: 2.5rem; color: var(--text-dark); margin-bottom: 1rem; }
+.pricing-header p { font-size: 1.1rem; color: var(--text-dark); max-width: 500px; margin: 0 auto; }
+
+.pricing-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.pricing-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  padding: 40px;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.pricing-card.recommended {
+  border-color: var(--primary-blue);
+  transform: scale(1.05);
+}
+
+.plan-name { font-size: 1.2rem; font-weight: 600; color: var(--text-light-gray); }
+.plan-price { font-size: 3rem; font-weight: 700; color: var(--text-dark); margin: 10px 0; }
+.plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-light-gray); }
+.plan-description { font-size: 0.9rem; color: var(--text-light-gray); margin-bottom: 30px; height: 40px; }
+.plan-features { list-style: none; padding: 0; margin: 0 0 40px 0; }
+.plan-features li { padding: 8px 0; border-bottom: 1px solid var(--background); }
+
+.plan-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Styling for primary and secondary buttons */
+.pricing-card.recommended .plan-button {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+}
+.pricing-card:not(.recommended) .plan-button {
+  background-color: var(--white);
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+}
+.pricing-card:not(.recommended) .plan-button:hover {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.auth-content {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+.auth-content > h2 { font-size: 2.5rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1rem; }
+.auth-content p { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 40px; }
+.auth-form-wrapper { width: 100%; max-width: 420px; margin: 0 auto; }
+
+/* --- ADD THESE NEW STYLES --- */
+
+.dive-in-prompt {
+  background-color: var(--white);
+  padding: 60px 20px 40px 20px; /* Spacing above and below the text */
+  text-align: center;
+}
+
+.dive-in-prompt h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+}
+/* Wave Animation */
+.parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+.parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+.parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+.parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+.parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; }
+@keyframes move-forever {
+  0% { transform: translate3d(-90px,0,0); }
+  100% { transform: translate3d(85px,0,0); }
+}
+
+/* 5. Footer */
+.page-footer {
+  background-color: var(--background);
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  color: var(--text-light-gray);
+  border-top: 1px solid #e9ecef;
+}
