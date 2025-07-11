@@ -1,0 +1,28 @@
+
+.builder-wrapper {
+  background-color: var(--background);
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+.builder-header {
+  padding: 1rem 2rem;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.back-to-dashboard-button {
+  text-decoration: none;
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+.builder-content {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.builder-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}

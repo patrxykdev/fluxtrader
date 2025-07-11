@@ -112,3 +112,29 @@
   width: 24px;
   height: 24px;
 }
+
+
+
+/* New styles for the header area within the main content */
+.dashboard-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.create-strategy-button {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+}
+
+.create-strategy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
+}

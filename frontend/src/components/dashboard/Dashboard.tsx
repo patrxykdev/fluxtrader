@@ -1,12 +1,12 @@
-// frontend/src/components/dashboard/Dashboard.tsx
 import React, { useEffect, useState } from 'react';
-import api from '../../api'; // Make sure the path is correct
+import api from '../../api'; 
 import StatCard from './StatCard';
 import PortfolioPerformanceCard from './PortfolioPerformanceCard';
 import ActiveStrategiesCard from './ActiveStrategiesCard';
 import RecentTradesCard from './RecentTradesCard.tsx';
 import { statCardsData } from './data';
 import './Dashboard.css';
+import { Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
         <div className="header-user">
           {/* Placeholder for notification icon */}
           <div className="notification-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 5.5V5.5C19.8284 5.5 20.5 6.17157 20.5 7C20.5 7.82843 19.8284 8.5 19 8.5" stroke="#dc3545" strokeWidth="2" strokeLinecap="round"/></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M18 8Az6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 5.5V5.5C19.8284 5.5 20.5 6.17157 20.5 7C20.5 7.82843 19.8284 8.5 19 8.5" stroke="#dc3545" strokeWidth="2" strokeLinecap="round"/></svg>
             <div className="notification-badge">3</div>
           </div>
           <div className="user-profile">
@@ -52,9 +52,14 @@ const Dashboard: React.FC = () => {
       </header>
 
       <main className="dashboard-main">
-        <div className="welcome-message">
-          <h2>Welcome back, {username || 'User'}!</h2>
-          <p>Here's a snapshot of your trading portfolio.</p>
+        <div className="dashboard-page-header">
+          <div className="welcome-message">
+            <h2>Welcome back, {username || 'User'}!</h2>
+            <p>Here's a snapshot of your trading portfolio.</p>
+          </div>
+          <Link to="/builder" className="create-strategy-button">
+            + Create Strategy
+          </Link>
         </div>
 
         <div className="dashboard-grid">
