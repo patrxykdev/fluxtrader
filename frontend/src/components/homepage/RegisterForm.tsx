@@ -1,6 +1,6 @@
 // frontend/src/components/RegisterForm.tsx
 import React, { useState } from 'react';
-import api from '../api';
+import api from '../../api';
 import { AxiosError } from 'axios';
 import './AuthForm.css';
 

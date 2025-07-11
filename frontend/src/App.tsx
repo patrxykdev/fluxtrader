@@ -1,6 +1,6 @@
-// frontend/src/App.tsx
-import HomePage from './components/HomePage';
-import Profile from './components/Profile'; // Assuming you have a Profile component for logged-in users
+
+import HomePage from './components/homepage/HomePage';
+import Dashboard from './components/dashboard/Dashboard'; // Updated import path
 import './App.css'; 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="main-app">
-      {token ? <Profile /> : <HomePage />}
+      {token ? <Dashboard /> : <HomePage />}
     </div>
   );
 }

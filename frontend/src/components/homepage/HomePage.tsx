@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import Modal from './Modal' // Import the Modal component
+import Modal from '../Modal' // Import the Modal component
 import './HomePage.css';
 
 // The complete feature data array

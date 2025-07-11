@@ -1,0 +1,114 @@
+/* frontend/src/components/dashboard/Dashboard.css */
+
+/* Main Layout & Header */
+.dashboard-wrapper {
+  background-color: #F8F9FD;
+  min-height: 100vh;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #DEE2E6;
+}
+.header-brand { display: flex; align-items: center; gap: 0.5rem; }
+.header-brand h1 { font-size: 1.25rem; font-weight: 600; color: var(--text-dark); margin: 0; }
+.header-user { display: flex; align-items: center; gap: 1.5rem; }
+.notification-icon { position: relative; cursor: pointer; }
+.notification-badge { position: absolute; top: -4px; right: -6px; background-color: #dc3545; color: white; font-size: 0.6rem; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; border: 2px solid white; }
+.user-profile { display: flex; align-items: center; gap: 0.75rem; }
+.user-profile img { width: 40px; height: 40px; border-radius: 50%; }
+.user-details { display: flex; flex-direction: column; }
+.user-name { font-weight: 500; }
+.user-role { font-size: 0.8rem; color: #6C757D; }
+.logout-button { background: transparent; border: none; color: #6C757D; cursor: pointer; font-weight: 500; }
+.logout-button:hover { color: var(--primary-blue); }
+
+/* Main Content & Grid */
+.dashboard-main { padding: 2rem; }
+.welcome-message h2 { font-size: 1.75rem; margin-bottom: 0.25rem; }
+.welcome-message p { color: #6C757D; margin-top: 0; margin-bottom: 2rem; }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 1.5rem;
+  grid-template-areas: 
+    "stat1 stat2 stat3 stat4"
+    "mainchart mainchart side side"
+    "bottom bottom side side";
+}
+
+/* General Card Style */
+.dashboard-card { background-color: #FFFFFF; border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+
+/* Stat Cards */
+.stat-card { display: flex; align-items: center; gap: 1rem; }
+.stat-card-icon-wrapper { width: 48px; height: 48px; border-radius: 50%; background-color: #E7F1FF; display: grid; place-items: center; flex-shrink: 0; }
+.stat-card-icon-wrapper svg { width: 24px; height: 24px; stroke: #0D6EFD; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.stat-card-info { display: flex; flex-direction: column; }
+.stat-card-title { font-size: 0.9rem; color: #6C757D; }
+.stat-card-value { font-size: 1.5rem; font-weight: 600; }
+.stat-card-change { margin-left: auto; font-weight: 500; }
+.stat-card-change.positive { color: #198754; }
+.stat-card-change.negative { color: #dc3545; }
+
+/* Assign Stat Cards to grid areas */
+.stat-card:nth-child(1) { grid-area: stat1; }
+.stat-card:nth-child(2) { grid-area: stat2; }
+.stat-card:nth-child(3) { grid-area: stat3; }
+.stat-card:nth-child(4) { grid-area: stat4; }
+
+/* Portfolio Performance Card */
+.portfolio-performance-card { grid-area: mainchart; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.card-header h3 { margin: 0; font-size: 1.2rem; }
+.time-range-selector button { background: none; border: none; padding: 0.5rem 0.75rem; border-radius: 6px; font-weight: 500; color: #6C757D; cursor: pointer; }
+.time-range-selector button.active { background-color: #E7F1FF; color: #0D6EFD; }
+.chart-placeholder { height: 250px; }
+
+/* Active Strategies Card */
+.active-strategies-card { grid-area: side; }
+.strategies-list { list-style: none; padding: 0; margin: 0; }
+.strategy-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid #F1F3F5; }
+.strategy-item:last-child { border-bottom: none; }
+.strategy-info { display: flex; align-items: center; gap: 0.75rem; }
+.status-dot { width: 10px; height: 10px; border-radius: 50%; }
+.status-dot.active { background-color: #198754; }
+.status-dot.paused { background-color: #ffc107; }
+.status-dot.inactive { background-color: #dc3545; }
+.strategy-name { font-weight: 500; }
+.strategy-status { font-size: 0.8rem; color: #6C757D; }
+.strategy-pnl { font-weight: 500; }
+.strategy-pnl.positive { color: #198754; }
+.strategy-pnl.negative { color: #dc3545; }
+
+/* Recent Trades Card */
+.recent-trades-card { grid-area: bottom; }
+.trades-table { width: 100%; border-collapse: collapse; }
+.trades-table th, .trades-table td { padding: 1rem; text-align: left; }
+.trades-table thead { color: #6C757D; font-size: 0.8rem; border-bottom: 1px solid #DEE2E6; }
+.trades-table tbody tr { border-bottom: 1px solid #F1F3F5; }
+.trades-table tbody tr:last-child { border-bottom: none; }
+.trade-type { padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; }
+.trade-type.buy { background-color: #D1E7DD; color: #0F5132; }
+.trade-type.sell { background-color: #F8D7DA; color: #842029; }
+
+.user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #E9ECEF; /* A light, neutral gray */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ADB5BD; /* A slightly darker gray for the icon */
+}
+
+.user-avatar-placeholder svg {
+  width: 24px;
+  height: 24px;
+}
