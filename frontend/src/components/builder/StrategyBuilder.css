@@ -1,28 +1,347 @@
+/* frontend/src/components/builder/StrategyBuilder.css */
+.builder-wrapper { display: flex; flex-direction: column; min-height: 100vh; background-color: var(--background); }
+.builder-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: var(--white); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+.back-to-dashboard-button { text-decoration: none; color: var(--primary-blue); font-weight: 500; }
+.strategy-actions { display: flex; align-items: center; gap: 1rem; }
+.strategy-name-input { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; }
+.save-strategy-button { background-color: var(--primary-blue); color: var(--white); border: none; padding: 8px 16px; border-radius: 6px; font-weight: 500; cursor: pointer; }
+.builder-main-content { padding: 2rem; flex-grow: 1; }
+.builder-form-card { max-width: 800px; margin: 0 auto; background-color: var(--white); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); }
+.section-title h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+.section-title p { margin: 0 0 1.5rem 0; color: var(--text-light-gray); font-size: 0.9rem; }
+.conditions-list { display: flex; flex-direction: column; gap: 1rem; }
+.condition-group { display: flex; flex-direction: column; align-items: center; }
+.condition-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: center; width: 100%; }
+.logical-operator-selector { margin: 0.75rem 0; background-color: var(--background); padding: 0.25rem 0.5rem; border-radius: 6px; width: fit-content; }
+.add-condition-button { background-color: transparent; color: var(--primary-blue); border: 1px dashed var(--primary-blue); width: 100%; padding: 0.75rem; margin-top: 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500; }
+.divider { border: none; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+.action-selector { display: flex; align-items: center; gap: 1rem; }
+.action-selector span { font-weight: 500; }
 
-.builder-wrapper {
-  background-color: var(--background);
-  min-height: 100vh;
-  color: var(--text-dark);
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
 
-.builder-header {
-  padding: 1rem 2rem;
-  background-color: var(--white);
-  border-bottom: 1px solid var(--border-color);
+.action-button {
+  padding: 10px 20px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  min-width: 80px;
 }
 
-.back-to-dashboard-button {
-  text-decoration: none;
-  color: var(--primary-blue);
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.long-button.selected {
+  background-color: #198754;
+  border-color: #198754;
+  color: white;
+}
+
+.short-button.selected {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.long-button:hover:not(.selected) {
+  border-color: #198754;
+  color: #198754;
+}
+
+.short-button:hover:not(.selected) {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+/* Responsive design for action buttons */
+@media (max-width: 768px) {
+  .action-selector {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons {
+    width: 100%;
+  }
+  
+  .action-button {
+    flex: 1;
+    min-width: 0;
+  }
+}
+.form-select, .form-input { width: 100%; padding: 10px 12px; font-size: 1rem; border: 1px solid var(--border-color); border-radius: 6px; }
+.form-select.small { width: auto; font-size: 0.8rem; padding: 4px 8px; }
+.remove-button { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; border-radius: 50%; width: 32px; height: 32px; font-weight: bold; cursor: pointer; }
+/* --- ADD THIS TO THE END OF THE FILE --- */
+
+.strategy-loader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.strategy-loader .form-select {
+  min-width: 200px;
+}
+
+/* --- ADD THIS TO THE END OF THE FILE --- */
+
+.delete-strategy-button {
+  background-color: transparent;
+  color: #dc3545; /* Red color for caution */
+  border: 1px solid #dc3545;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-strategy-button:hover:not(:disabled) {
+  background-color: #dc3545;
+  color: var(--white);
+}
+
+.delete-strategy-button:disabled {
+  color: var(--text-light-gray);
+  border-color: var(--border-color);
+  cursor: not-allowed;
+}
+
+/* Add new styles for enhanced condition rows */
+.condition-row {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e9ecef;
+  position: relative;
+}
+
+.condition-main {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.indicator-select {
+  min-width: 150px;
+  flex: 1;
+}
+
+.operator-select {
+  min-width: 120px;
+  flex: 1;
+}
+
+.value-input {
+  min-width: 120px;
+  flex: 1;
+}
+
+.condition-actions {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  z-index: 10;
+}
+
+.params-toggle-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.params-toggle-button:hover {
+  background-color: #5a6268;
+}
+
+.remove-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.parameter-inputs {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.parameter-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.parameter-input label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-light-gray);
+}
+
+.parameter-input input {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  width: 80px;
+}
+
+.parameter-input input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.1);
+}
+
+/* Cross comparison styles */
+.cross-comparison-inputs {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #dee2e6;
+  background-color: #e3f2fd;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cross-indicator-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cross-indicator-select label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1976d2;
+  min-width: 80px;
+}
+
+.cross-indicator-select select {
+  padding: 6px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+.compare-parameter-inputs {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-left: 1rem;
+  border-left: 2px solid #1976d2;
+}
+
+/* Range input styles */
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.range-inputs span {
+  font-size: 0.9rem;
+  color: var(--text-light-gray);
   font-weight: 500;
 }
 
-.builder-content {
-  padding: 4rem 2rem;
-  text-align: center;
+.range-inputs .form-input {
+  flex: 1;
+  min-width: 80px;
 }
 
-.builder-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+/* Responsive design for condition rows */
+@media (max-width: 768px) {
+  .condition-main {
+    flex-direction: column;
+    align-items: stretch;
+    padding-right: 0;
+  }
+  
+  .condition-actions {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .parameter-inputs {
+    flex-direction: column;
+  }
+  
+  .parameter-input {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .parameter-input input {
+    width: 100px;
+  }
+  
+  .cross-comparison-inputs {
+    flex-direction: column;
+  }
+  
+  .cross-indicator-select {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .compare-parameter-inputs {
+    padding-left: 0.5rem;
+  }
+  
+  .range-inputs {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 }

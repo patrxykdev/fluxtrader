@@ -35,3 +35,67 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.flux-toast {
+  background-color: var(--text-dark) !important; /* A dark, professional blue/gray */
+  color: var(--white) !important;
+  box-shadow: 0 5px 15px rgba(74, 5, 5, 0.2) !important;
+  border-radius: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.95rem !important;
+}
+
+.flux-toast-success {
+  background-color: #198754 !important; /* A nice success green */
+  color: var(--white) !important;
+}
+
+.flux-toast-error {
+  background-color: #dc3545 !important; /* A standard error red */
+  color: var(--white) !important;
+}
+
+.confirmation-toast {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Increased gap */
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.confirmation-buttons button {
+  flex-grow: 1;
+  padding: 10px 12px;
+  border-radius: 8px; /* Slightly less rounded */
+  font-weight: 600; /* Bolder text */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* The main action button is a slightly darker red */
+.confirm-button-danger {
+  background-color: #C9302C; 
+  color: white;
+}
+
+.confirm-button-danger:hover {
+  background-color: #ac2925;
+}
+
+/* The cancel button is a semi-transparent red */
+.cancel-button-danger {
+  background-color: rgba(199, 48, 44, 0.5); /* Semi-transparent version of the main red */
+  color: white;
+}
+
+.cancel-button-danger:hover {
+  background-color: rgba(199, 48, 44, 0.7);
+}

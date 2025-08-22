@@ -14,7 +14,15 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     api.get('/api/profile/')
       .then(response => setUsername(response.data.username))
-      .catch(error => console.error("Failed to fetch profile", error));
+      .catch(error => {
+        console.error("Failed to fetch profile", error);
+        // If it's an authentication error, redirect to login
+        if (error.response?.status === 401) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          window.location.href = '/';
+        }
+      });
   }, []);
   
   const handleLogout = () => {
@@ -33,9 +41,12 @@ const Dashboard: React.FC = () => {
         <div className="header-user">
           {/* Placeholder for notification icon */}
           <div className="notification-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M18 8Az6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="#6C757D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M19 5.5V5.5C19.8284 5.5 20.5 6.17157 20.5 7C20.5 7.82843 19.8284 8.5 19 8.5" stroke="#dc3545" strokeWidth="2" strokeLinecap="round"/></svg>
-            <div className="notification-badge">3</div>
-          </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          <div className="notification-badge">3</div>
+        </div>
           <div className="user-profile">
             <div className="user-avatar-placeholder">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -57,9 +68,14 @@ const Dashboard: React.FC = () => {
             <h2>Welcome back, {username || 'User'}!</h2>
             <p>Here's a snapshot of your trading portfolio.</p>
           </div>
-          <Link to="/builder" className="create-strategy-button">
-            + Create Strategy
-          </Link>
+          <div className="header-actions">
+  <Link to="/backtest" className="backtest-strategy-button">
+    Backtest Strategy
+  </Link>
+  <Link to="/builder" className="create-strategy-button">
+    + Create Strategy
+  </Link>
+</div>
         </div>
 
         <div className="dashboard-grid">

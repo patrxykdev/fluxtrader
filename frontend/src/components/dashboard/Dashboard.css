@@ -123,6 +123,28 @@
   margin-bottom: 2rem;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Creates space between the buttons */
+}
+
+/* Secondary Button Style (Backtest) */
+.backtest-strategy-button {
+  background-color: transparent;
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.backtest-strategy-button:hover {
+  background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Primary Button Style (Create) */
 .create-strategy-button {
   background-color: var(--primary-blue);
   color: var(--white);
@@ -133,8 +155,45 @@
   transition: all 0.2s ease;
   box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
 }
-
 .create-strategy-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
+}
+
+.notification-icon {
+  position: relative; /* This is the anchor for the badge */
+  cursor: pointer;
+  color: var(--text-light-gray); /* Default color for the bell icon */
+}
+
+.notification-icon:hover {
+  color: var(--text-dark); /* Darker on hover */
+}
+
+.notification-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;      /* Position the badge slightly above the icon's top edge */
+  right: -4px;    /* Position it slightly past the icon's right edge */
+  
+  background-color: #dc3545; /* Red color */
+  color: white;
+  
+  width: 16px;
+  height: 16px;
+  
+  border-radius: 50%;
+  border: 2px solid white; /* Creates the white outline effect */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1; /* Ensures number is centered vertically */
 }

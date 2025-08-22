@@ -1,0 +1,621 @@
+/* frontend/src/components/backtester/BacktestPage.css */
+.backtest-wrapper { min-height: 100vh; background-color: var(--background); }
+.backtest-header { padding: 1rem 2rem; background-color: var(--white); border-bottom: 1px solid var(--border-color); }
+.back-to-dashboard-button { text-decoration: none; color: var(--primary-blue); font-weight: 500; }
+.backtest-content { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.backtest-content h1 { text-align: center; margin-bottom: 2rem; }
+
+.backtest-setup-card {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.setup-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.setup-row:last-child {
+  margin-bottom: 0;
+}
+
+.setup-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.setup-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.setup-group input, .setup-group select {
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.setup-group input:focus, .setup-group select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+/* Custom date input styling to match blue-white theme */
+.setup-group input[type="date"] {
+  position: relative;
+  background-color: #fff;
+  color: var(--text-dark);
+  font-family: inherit;
+  /* Add custom calendar icon */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230d6efd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.setup-group input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: var(--primary-blue);
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  filter: brightness(1);
+  transition: all 0.2s ease;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.setup-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.setup-group input[type="date"]::-webkit-calendar-picker-indicator:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.setup-group input[type="date"]::-moz-calendar-picker-indicator {
+  background-color: var(--primary-blue);
+  color: white;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.setup-group input[type="date"]::-moz-calendar-picker-indicator:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Date input when disabled */
+.setup-group input[type="date"]:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+}
+
+.setup-group input[type="date"]:disabled::-webkit-calendar-picker-indicator {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.setup-group input[type="date"]:disabled::-moz-calendar-picker-indicator {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.setup-group input.error, .setup-group select.error {
+  border-color: #dc3545;
+}
+
+.run-backtest-btn {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+}
+
+.run-backtest-btn:hover:not(:disabled) {
+  background-color: #0b5ed7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.run-backtest-btn:disabled {
+  background-color: var(--text-light-gray);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.error-message { 
+  background-color: #f8d7da; 
+  color: #842029; 
+  padding: 1rem; 
+  border-radius: 8px; 
+  text-align: center; 
+  margin: 0 auto 2rem auto; 
+  max-width: 800px;
+  border: 1px solid #f5c2c7;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: var(--primary-blue);
+  border-radius: 50%;
+  display: block;
+  box-sizing: border-box;
+  margin: 40px auto;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.results-container {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.results-container h2 { text-align: center; margin-bottom: 2rem; }
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+
+.stat-item span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-light-gray);
+  margin-bottom: 0.5rem;
+}
+
+.stat-item strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+.chart-container {
+  margin: 2rem 0;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.trades-table-container {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.trades-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e9ecef;
+}
+
+.trades-table th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text-dark);
+  border-bottom: 2px solid #dee2e6;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.trades-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #f1f3f4;
+  vertical-align: middle;
+}
+
+.trades-table tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.trades-table tr:last-child td {
+  border-bottom: none;
+}
+
+.trade-type {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.trade-type.long {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border-color: #0f5132;
+}
+
+.trade-type.short {
+  background-color: #f8d7da;
+  color: #842029;
+  border-color: #842029;
+}
+
+.trade-type.exit-long {
+  background-color: #cff4fc;
+  color: #055160;
+  border-color: #055160;
+}
+
+.trade-type.exit-short {
+  background-color: #fff3cd;
+  color: #664d03;
+  border-color: #664d03;
+}
+
+.trade-type.margin-call-long,
+.trade-type.margin-call-short {
+  background-color: #f8d7da;
+  color: #842029;
+  border-color: #842029;
+  font-weight: 700;
+}
+
+/* Portfolio and Leverage styling */
+.trades-table td:nth-child(4), /* Portfolio column */
+.trades-table td:last-child {  /* Leverage column */
+  text-align: center;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+/* P&L styling */
+.trades-table td.profit {
+  color: #198754;
+  font-weight: 700;
+}
+
+.trades-table td.loss {
+  color: #dc3545;
+  font-weight: 700;
+}
+
+/* Neutral P&L styling */
+.trades-table td.neutral {
+  color: #6c757d;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* P&L value styling */
+.pnl-value {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pnl-value.profit {
+  background-color: rgba(25, 135, 84, 0.1);
+  color: #198754;
+  border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.pnl-value.loss {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.pnl-value.neutral {
+  background-color: rgba(108, 117, 125, 0.1);
+  color: #6c757d;
+  border: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .backtest-setup-card {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trades-table {
+    font-size: 0.9rem;
+  }
+  
+  .trades-table th,
+  .trades-table td {
+    padding: 8px;
+  }
+}
+
+/* Data Range Information Styles */
+.data-range-info {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.data-range-info.warning {
+  background: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.data-range-info.success {
+  background: #d1ecf1;
+  border-color: #17a2b8;
+  color: #0c5460;
+}
+
+.data-range-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.data-range-icon {
+  font-size: 1.2rem;
+}
+
+.data-range-title {
+  font-size: 1rem;
+}
+
+.data-range-message {
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.data-range-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.data-range-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.data-range-item strong {
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* Responsive design for data range info */
+@media (max-width: 768px) {
+  .data-range-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .data-range-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Date range validation styles */
+.date-range-info {
+  font-size: 0.8rem;
+  color: var(--text-light-gray);
+  margin-top: 0.25rem;
+  display: block;
+  padding: 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary-blue);
+  transition: all 0.2s ease;
+}
+
+.date-range-info:hover {
+  background-color: #e9ecef;
+  border-left-color: #0b5ed7;
+}
+
+.date-warning {
+  color: var(--primary-blue);
+  font-weight: 500;
+  font-style: italic;
+  background-color: rgba(13, 110, 253, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+}
+
+.info-message {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  max-width: 800px;
+  border: 1px solid #bbdefb;
+}
+
+.warning-message {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  max-width: 800px;
+  border: 1px solid #ffeaa7;
+}
+
+.success-message {
+  background-color: #d1edff;
+  color: #0c5460;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  max-width: 800px;
+  border: 1px solid #bee5eb;
+}
+
+.auto-adjust-notice {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #0c5460;
+  background-color: rgba(13, 110, 253, 0.1);
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(13, 110, 253, 0.2);
+  border-left: 3px solid var(--primary-blue);
+  transition: all 0.2s ease;
+}
+
+.auto-adjust-notice:hover {
+  background-color: rgba(13, 110, 253, 0.15);
+  border-color: rgba(13, 110, 253, 0.3);
+}
+
+/* Custom styles for react-datepicker blue/white theme */
+.custom-datepicker {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+.custom-datepicker:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+}
+
+.custom-calendar {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--primary-blue);
+  box-shadow: 0 4px 24px rgba(13, 110, 253, 0.08);
+  padding: 0.5rem 0.75rem;
+}
+
+.custom-calendar .react-datepicker__header {
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--primary-blue);
+  border-radius: 12px 12px 0 0;
+}
+
+.custom-calendar .react-datepicker__current-month,
+.custom-calendar .react-datepicker__day-name {
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.custom-calendar .react-datepicker__day--selected,
+.custom-calendar .react-datepicker__day--keyboard-selected {
+  background: var(--primary-blue);
+  color: #fff;
+  border-radius: 6px;
+}
+
+.custom-calendar .react-datepicker__day:hover {
+  background: #e3f2fd;
+  color: var(--primary-blue);
+  border-radius: 6px;
+}
+
+.custom-calendar .react-datepicker__day--today {
+  border: 1.5px solid var(--primary-blue);
+  background: #e3f2fd;
+  color: var(--primary-blue);
+  border-radius: 6px;
+}
+
+.custom-calendar .react-datepicker__day--disabled {
+  color: #adb5bd;
+  background: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.custom-calendar .react-datepicker__triangle {
+  display: none;
+}
+
+/* Remove default input[type=date] styles if not needed */
+.setup-group input[type="date"] {
+  background-image: none;
+  padding-right: 16px;
+}

@@ -26,7 +26,7 @@ const RegisterForm: React.FC = () => {
           const errorMessages = Object.values(err.response.data).flat().join(' ');
           setMessage(`Error: ${errorMessages}`);
         } else {
-          setMessage('An unknown error occurred. Please try again.');
+          setMessage('An unknown erro3r occurred. Please try again.');
         }
     }
   };

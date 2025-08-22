@@ -1,8 +1,9 @@
 // frontend/src/components/HomePage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Modal from '../Modal' // Import the Modal component
+import TopNavbar from '../common/TopNavbar';
 import './HomePage.css';
 
 // The complete feature data array
@@ -62,20 +63,110 @@ const HomePage: React.FC = () => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
+  // Refs for scroll animations on feature cards
+  const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Intersection Observer for fade-in animations on feature cards
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all feature cards
+    featureRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="homepage-container">
-      {/* 1. Top Header with Login Button */}
-      <header className="page-header">
-        <h1 className="page-title">Flux Trader</h1>
-        <p className="hero-motto">Beat the market before it drowns you.</p>
-        <div className="motto-line"></div>
-        <button className="login-button" onClick={() => setIsLoginModalOpen(true)}>Login</button>
-      </header>
+      {/* Persistent Top Navbar */}
+      <TopNavbar onLoginClick={() => setIsLoginModalOpen(true)} />
+      
+      {/* Enhanced Hero Section */}
+      <section className="hero-section">
+        {/* Background gradient overlay */}
+        <div className="hero-background">
+          <div className="gradient-overlay"></div>
+        </div>
+        
+        {/* Hero content */}
+        <div className="hero-content">
+          {/* Announcement banner */}
+          <div className="announcement-banner">
+            <span>🚀 Introducing live trading soon</span>
+            <a href="#features" className="read-more-link">Read more →</a>
+          </div>
+          
+          {/* Main heading */}
+          <h1 className="hero-title">
+            Beat the market before it <span className="highlight">drowns</span> you
+          </h1>
+          
+          {/* Description */}
+          <p className="hero-description">
+            Flux Trader empowers you to build, test, and deploy sophisticated trading strategies without writing a single line of code. Create, backtest, and optimize your algorithms with our intuitive no-code platform.
+          </p>
+          
+          {/* Call to action buttons */}
+          <div className="hero-actions">
+            <button className="cta-primary" onClick={() => {
+              const pricingSection = document.getElementById('pricing');
+              if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}>
+              Get started
+            </button>
+            <a href="#features" className="cta-secondary">
+              Learn more →
+            </a>
+          </div>
+        </div>
+        
+        {/* Floating elements for visual interest */}
+        <div className="floating-elements">
+          <div className="floating-card floating-card-1">
+            <div className="card-icon">📈</div>
+            <div className="card-text">Real-time Analytics</div>
+          </div>
+          <div className="floating-card floating-card-2">
+            <div className="card-icon">⚡</div>
+            <div className="card-text">Lightning Fast</div>
+          </div>
+          <div className="floating-card floating-card-3">
+            <div className="card-icon">🔒</div>
+            <div className="card-text">Bank-grade Security</div>
+          </div>
+        </div>
+      </section>
 
       {/* Features Section */}
-      <section className="features-container">
+      <section id="features" className="features-container">
+        <div className="section-header">
+          <h2>Why Choose Flux Trader?</h2>
+          <p>Built by traders, for traders. Experience the future of algorithmic trading.</p>
+        </div>
+        
         {features.map((feature, index) => (
-          <div key={index} className="feature-card">
+          <div 
+            key={index} 
+            ref={(el) => {
+              featureRefs.current[index] = el;
+            }}
+            className="feature-card fade-in-element"
+          >
             <div className="feature-icon-container">{feature.icon}</div>
             <div className="feature-text">
               <h3>{feature.title}</h3>
@@ -84,11 +175,53 @@ const HomePage: React.FC = () => {
           </div>
         ))}
       </section>
-      
-       <section className="dive-in-prompt">
-        <h2>Ready to Dive In?</h2>
+
+      {/* About Us Section */}
+      <section id="about" className="about-section">
+        <div className="section-header">
+          <h2>About Flux Trader</h2>
+          <p>We're revolutionizing algorithmic trading by making it accessible to everyone</p>
+        </div>
+        
+        <div className="about-content">
+          <div className="about-text">
+            <h3>Our Mission</h3>
+            <p>
+              Flux Trader was born from a simple belief: sophisticated trading strategies shouldn't require a computer science degree. 
+              We've built a platform that bridges the gap between complex algorithmic trading and intuitive, visual strategy building.
+            </p>
+            
+            <h3>What We Do</h3>
+            <p>
+              Our no-code platform empowers traders of all skill levels to create, test, and deploy automated trading strategies. 
+              From simple moving average crossovers to complex multi-timeframe algorithms, Flux Trader handles the complexity while you focus on strategy.
+            </p>
+          </div>
+          
+          <div className="about-stats">
+            <div className="stat-card">
+              <div className="stat-number">10K+</div>
+              <div className="stat-label">Active Users</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">$50M+</div>
+              <div className="stat-label">Trading Volume</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">20K+</div>
+              <div className="stat-label">Profitable Strategies</div>
+            </div>
+          </div>
+        </div>
       </section>
-      
+
+      {/* Ready to Dive In Section */}
+      <section className="dive-in-section">
+        <div className="dive-in-content">
+          <h2 className="dive-in-title">Ready to dive in?</h2>
+        </div>
+      </section>
+
       {/* Wave Transition */}
       <section className="wave-transition-section">
         <div className="wave-container">
@@ -108,7 +241,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Pricing Section */}
-      <section className="pricing-section">
+      <section id="pricing" className="pricing-section">
         <div className="pricing-header">
           <h2>Choose Your Plan</h2>
           <p>Start for free and scale as you grow. Cancel anytime.</p>

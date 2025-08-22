@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from .models import Strategy 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +16,9 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+    
+class StrategySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Strategy
+        fields = ['id', 'name', 'configuration', 'created_at', 'updated_at']
+        read_only_fields = ['user']
