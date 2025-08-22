@@ -17,14 +17,15 @@ const StrategyBuilder: React.FC = () => {
   saveStrategy, resetBuilder,
   savedStrategies, fetchSavedStrategies, loadStrategy, deleteStrategy
 } = useBuilderStore();
-  const handleLoadStrategy = async () => {
-    if (selectedStrategyId === '') return;
-    const loadedStrategy = await loadStrategy(Number(selectedStrategyId));
-    if (loadedStrategy) {
-      // Update the name input field with the loaded strategy's name
-      setStrategyName(loadedStrategy.name);
-    }
-  };
+  // Function to load strategy (commented out as it's not currently used)
+  // const handleLoadStrategy = async () => {
+  //   if (selectedStrategyId === '') return;
+  //   const loadedStrategy = await loadStrategy(Number(selectedStrategyId));
+  //   if (loadedStrategy) {
+  //     // Update the name input field with the loaded strategy's name
+  //     setStrategyName(loadedStrategy.name);
+  //   }
+  // };
 const handleSaveStrategy = () => {
     const promise = saveStrategy(strategyName);
 

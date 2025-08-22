@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Condition, IndicatorType, OperatorType } from './types';
 import { useBuilderStore } from './builderStore';
-import { INDICATOR_PARAMS, COMMON_CROSSES } from './types';
+import { INDICATOR_PARAMS } from './types';
 
 interface ConditionRowProps {
   condition: Condition;
@@ -15,28 +15,30 @@ const ConditionRow: React.FC<ConditionRowProps> = ({ condition }) => {
   const hasParams = INDICATOR_PARAMS[condition.indicator as keyof typeof INDICATOR_PARAMS] && 
     Object.keys(INDICATOR_PARAMS[condition.indicator as keyof typeof INDICATOR_PARAMS]).length > 0;
 
-  const getOperatorSymbol = (operator: OperatorType) => {
-    switch (operator) {
-      case 'less_than': return '<';
-      case 'greater_than': return '>';
-      case 'crosses_above': return 'Crosses Above';
-      case 'crosses_below': return 'Crosses Below';
-      case 'equals': return '=';
-      case 'not_equals': return '≠';
-      case 'between': return 'Between';
-      case 'outside': return 'Outside';
-      default: return operator;
-    }
-  };
+  // Helper function for operator symbols (commented out as it's not currently used)
+  // const getOperatorSymbol = (operator: OperatorType) => {
+  //   switch (operator) {
+  //     case 'less_than': return '<';
+  //     case 'greater_than': return '>';
+  //     case 'crosses_above': return 'Crosses Above';
+  //     case 'crosses_below': return 'Crosses Below';
+  //     case 'equals': return '=';
+  //     case 'not_equals': return '≠';
+  //     case 'between': return 'Between';
+  //     case 'outside': return 'Outside';
+  //     default: return operator;
+  //   }
+  // };
 
-  const getIndicatorDisplayName = (indicator: IndicatorType) => {
-    switch (indicator) {
-      case 'Bollinger_Bands': return 'Bollinger Bands';
-      case 'Williams_R': return 'Williams %R';
-      case 'Close': return 'Price';
-      default: return indicator;
-    }
-  };
+  // Helper function for indicator display names (commented out as it's not currently used)
+  // const getIndicatorDisplayName = (indicator: IndicatorType) => {
+  //   switch (indicator) {
+  //     case 'Bollinger_Bands': return 'Bollinger Bands';
+  //     case 'Williams_R': return 'Williams %R';
+  //     case 'Close': return 'Price';
+  //     default: return indicator;
+  //   }
+  // };
 
   const isCrossOperator = (operator: OperatorType) => {
     return operator === 'crosses_above' || operator === 'crosses_below';
@@ -102,12 +104,12 @@ const ConditionRow: React.FC<ConditionRowProps> = ({ condition }) => {
                 <label>Compare {key.replace('_', ' ').toUpperCase()}:</label>
                 <input
                   type="number"
-                  value={condition[`compare${key.charAt(0).toUpperCase() + key.slice(1)}` as keyof Condition] ?? defaultValue}
-                  onChange={(e) => {
-                    const inputValue = e.target.value;
-                    const value = inputValue === '' ? undefined : (parseInt(inputValue) || defaultValue);
-                    updateCondition(condition.id, `compare${key.charAt(0).toUpperCase() + key.slice(1)}` as keyof Condition, value as any);
-                  }}
+                  value={String(condition[`compare${key.charAt(0).toUpperCase() + key.slice(1)}` as keyof Condition] ?? defaultValue)}
+                                  onChange={(e) => {
+                  const inputValue = e.target.value;
+                  const value = inputValue === '' ? undefined : (parseInt(inputValue) || defaultValue);
+                  updateCondition(condition.id, `compare${key.charAt(0).toUpperCase() + key.slice(1)}` as keyof Condition, value as string | number | undefined);
+                }}
                   min="1"
                   max="200"
                 />

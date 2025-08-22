@@ -20,8 +20,8 @@ const TickerSelector: React.FC<TickerSelectorProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Get current ticker info
-  const currentTicker = tickerOptions.find(t => t.symbol === value);
+  // Get current ticker info (commented out as it's not currently used)
+  // const currentTicker = tickerOptions.find(t => t.symbol === value);
 
   // Filter tickers based on search and category
   const filteredTickers = selectedCategory === 'All' 

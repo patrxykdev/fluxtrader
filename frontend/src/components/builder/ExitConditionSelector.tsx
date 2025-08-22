@@ -1,7 +1,7 @@
 // frontend/src/components/builder/ExitConditionSelector.tsx
 import React, { useState } from 'react';
-import type { ExitCondition, ExitType, IndicatorType, OperatorType, TimeUnit } from './types';
-import { EXIT_PRESETS, INDICATOR_PARAMS } from './types';
+import type { ExitCondition, ExitType, TimeUnit } from './types';
+import { EXIT_PRESETS } from './types';
 import './ExitConditionSelector.css';
 
 interface ExitConditionSelectorProps {
